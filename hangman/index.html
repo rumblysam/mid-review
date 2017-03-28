@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hangman review</title>
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<style type="text/css">
+		
+		.jumbo-title {
+
+		};
+
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="jumbotron">
+	    <p class="jumbo-title">Hangman Review</p>	  
+	</div>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">Word to Guess</div>
+	  <div class="panel-body">
+	    <h2 id="wordToGuess"></h2>
+	  </div>
+	</div>
+
+
+	<div class="panel panel-default"> 
+	  <div class="panel-body">
+	    Guesses Left: <span id="numGuesses">a</span>
+	  </div>
+	</div>
+
+	<div class="panel panel-default"> 
+	  <div class="panel-body">
+	    Wrong Guesses: <span id="wrongGuesses">a</span>
+	  </div>
+	</div>
+
+	<div class="panel panel-default"> 
+	  <div class="panel-body">
+	    Games Won: <span id="winCounter">a</span>
+	  </div>
+	</div>
+
+	<div class="panel panel-default"> 
+	  <div class="panel-body">
+	    Games Lost: <span id="lossCounter">a</span>
+	  </div>
+	</div>
+
+
+</div>
+
+<script type="text/javascript">
+//global Variables
+//------------------------------------------------------------
+var wordOptions = ["mark", "jb", "bambam", "youngjae", "jinyoung", "yugeom", "jackson"];
+var selectedWord = "";
+var lettersInWord = [];
+var numBlanks = 0;
+var blankAndSuccesses = [];
+var wrongLetters = [];
+
+//game counters
+var winCount = 0;
+var lossCount = 0;
+var guessesLeft = 0;
+
+
+//FUNCTIONS
+//------------------------------------------------------------
+function startGame () {
+	selectedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
+	lettersInWord = selectedWord.split("");
+	numBlanks = lettersInWord.length;
+
+	//Reset
+	guessesLeft = 9;
+	wrongLetters = [];
+	blankAndSuccesses = [];
+
+	//populate right # of blanks
+
+	for (var i = 0; i< numBlanks; i++) {
+		blankAndSuccesses.push("_");
+	}
+
+	//change HTML to reflect round conditions
+	document.getElementById("wordToGuess").innerHTML = blankAndSuccesses.join(" ");
+	//using .join removes commas
+	document.getElementById("numGuesses").innerHTML = guessesLeft;
+	document.getElementById("winCounter").innerHTML = winCount;
+	document.getElementById("lossCounter").innerHTML = lossCount;
+
+
+	//Testing/
+	console.log(selectedWord);
+	console.log(lettersInWord);
+	console.log(numBlanks);
+	console.log(blankAndSuccesses);
+}
+
+//MAIN PROCESS
+//------------------------------------------------------------
+startGame();
+
+
+//Register key clicks
+
+document.onkeyup = function(event) {
+	var lettersguessed = String.fromCharCode(event.keyCode).toLowerCase();
+	//Testing
+	console.log(lettersguessed);
+}
+
+</script>
+</body>
+</html>
