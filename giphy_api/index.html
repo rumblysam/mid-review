@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GIPHY console.log</title>
+    </head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC";
+
+        $.ajax({url:queryURL,method:'GET'})
+            .done(function(response){
+                console.log(response);
+            });
+
+            
+
+    </script>
+</body>
+</html>
